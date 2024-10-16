@@ -1,22 +1,32 @@
-# memcached-operator
-// TODO(user): Add simple overview of use/purpose
+# Memcached Operator
 
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+## Projektübersicht
+Der **Memcached Operator** ist ein Kubernetes-Operator, der die Bereitstellung, Verwaltung und Skalierung von Memcached-Instanzen innerhalb eines Kubernetes-Clusters automatisiert. Er ermöglicht es Entwicklern und Administratoren, Memcached als Cache-Lösung effizient zu nutzen, indem er die Komplexität der manuellen Bereitstellung und Verwaltung reduziert. 
 
-## Getting Started
+Mit diesem Operator kannst du Memcached-Instanzen durch benutzerdefinierte Ressourcen (Custom Resources) erstellen und verwalten. Der Operator überwacht den Zustand der Memcached-Instanzen und stellt sicher, dass die gewünschte Anzahl von Pods zu jedem Zeitpunkt ausgeführt wird. Bei Bedarf werden neue Instanzen erstellt oder bestehende Instanzen aktualisiert.
 
-### Prerequisites
-- go version v1.22.0+
-- docker version 17.03+.
-- kubectl version v1.11.3+.
-- Access to a Kubernetes v1.11.3+ cluster.
+## Funktionen
 
-### To Deploy on the cluster
-**Build and push your image to the location specified by `IMG`:**
+- **Automatische Bereitstellung**: Der Operator kümmert sich um die Bereitstellung und Konfiguration von Memcached-Instanzen.
+- **Skalierung**: Unterstützung der Skalierung der Memcached-Instanzen basierend auf Benutzeranforderungen.
+- **Überwachung**: Automatisches Überwachen des Status von Memcached-Pods und Wiederherstellen bei Ausfällen.
 
-```sh
+## Voraussetzungen
+
+- Go Version v1.22.0+
+- Docker Version 17.03+
+- kubectl Version v1.11.3+
+- Zugriff auf ein Kubernetes v1.11.3+ Cluster
+
+## Installation
+
+### 1. Bauen und Pushen des Images
+
+Bauen und pushen Sie Ihr Docker-Image an den im `IMG` angegebenen Speicherort:
+
+```bash
 make docker-build docker-push IMG=<some-registry>/memcached-operator:tag
+
 ```
 
 **NOTE:** This image ought to be published in the personal registry you specified.
