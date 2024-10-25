@@ -29,82 +29,80 @@ make docker-build docker-push IMG=<some-registry>/memcached-operator:tag
 
 ```
 
-**NOTE:** This image ought to be published in the personal registry you specified.
-And it is required to have access to pull the image from the working environment.
-Make sure you have the proper permission to the registry if the above commands don’t work.
+**HINWEIS:** Dieses Image sollte in dem angegebenen persönlichen Registry veröffentlicht werden. Es ist erforderlich, Zugriff zu haben, um das Image aus der Arbeitsumgebung abrufen zu können. Stelle sicher, dass du die erforderlichen Berechtigungen für das Registry hast, falls die obigen Befehle nicht funktionieren.
 
-**Install the CRDs into the cluster:**
+**Installiere die CRDs im Cluster:**
 
 ```sh
 make install
 ```
 
-**Deploy the Manager to the cluster with the image specified by `IMG`:**
+**Deploye den Manager im Cluster mit dem im `IMG`: angegebenen Image**
 
 ```sh
 make deploy IMG=<some-registry>/memcached-operator:tag
 ```
 
-> **NOTE**: If you encounter RBAC errors, you may need to grant yourself cluster-admin
-privileges or be logged in as admin.
+> **HINWEIS:** Solltest du auf RBAC-Fehler stoßen, musst du dir möglicherweise Cluster-Admin-Berechtigungen erteilen oder als Admin angemeldet sein.
 
-**Create instances of your solution**
-You can apply the samples (examples) from the config/sample:
+**Erstelle Instanzen deiner Lösung**
+
+Du kannst die Beispiele aus dem Verzeichnis config/sample anwenden:
 
 ```sh
 kubectl apply -k config/samples/
 ```
 
->**NOTE**: Ensure that the samples has default values to test it out.
+>**HINWEIS:** Stelle sicher, dass die Beispiele Standardwerte enthalten, um sie testen zu können.
 
-### To Uninstall
-**Delete the instances (CRs) from the cluster:**
+### Deinstallation
+
+**Lösche die Instanzen (CRs) aus dem Cluster:**
 
 ```sh
 kubectl delete -k config/samples/
 ```
 
-**Delete the APIs(CRDs) from the cluster:**
+**Lösche die APIs (CRDs) aus dem Cluster:**
 
 ```sh
 make uninstall
 ```
 
-**UnDeploy the controller from the cluster:**
+**Entferne den Controller aus dem Cluster:**
 
 ```sh
 make undeploy
 ```
 
-## Project Distribution
+## Projektverteilung
 
-Following are the steps to build the installer and distribute this project to users.
+Die folgenden Schritte sind erforderlich, um den Installer zu bauen und dieses Projekt an Nutzer zu verteilen.
 
-1. Build the installer for the image built and published in the registry:
+Baue den Installer für das Image, das im Registry gebaut und veröffentlicht wurde:
 
 ```sh
 make build-installer IMG=<some-registry>/memcached-operator:tag
 ```
 
-NOTE: The makefile target mentioned above generates an 'install.yaml'
-file in the dist directory. This file contains all the resources built
-with Kustomize, which are necessary to install this project without
-its dependencies.
+HINWEIS: Das oben erwähnte makefile-Ziel erzeugt eine install.yaml-Datei im dist-Verzeichnis. Diese Datei enthält alle mit Kustomize erstellten Ressourcen, die zur Installation dieses Projekts ohne Abhängigkeiten erforderlich sind.
 
-2. Using the installer
 
-Users can just run kubectl apply -f <URL for YAML BUNDLE> to install the project, i.e.:
+2. Nutzung des Installers
+
+Nutzer können das Projekt einfach installieren, indem sie kubectl apply -f <URL für das YAML-BUNDLE> ausführen, z. B.:
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/<org>/memcached-operator/<tag or branch>/dist/install.yaml
 ```
 
-## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
+## Beitrag leisten
 
-**NOTE:** Run `make help` for more information on all potential `make` targets
+// TODO(benutzer): Füge detaillierte Informationen hinzu, wie andere zu diesem Projekt beitragen können.
 
-More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
+**HINWEIS:** Führe `make help` aus, um mehr über alle möglichen `make`-Ziele zu erfahren
+
+Mehr Informationen sind in der [Kubebuilder Documentation] zu finden (https://book.kubebuilder.io/introduction.html)
 
 ## License
 
